@@ -1,23 +1,12 @@
 package se.lexicon;
 
-import se.lexicon.dao.AppUserDao;
-import se.lexicon.dao.PersonDao;
-import se.lexicon.dao.TodoItemDao;
-import se.lexicon.dao.impl.AppUserDaoImpl;
-import se.lexicon.dao.impl.PersonDaoImpl;
-import se.lexicon.dao.impl.TodoItemDaoImpl;
-import se.lexicon.model.AppUser;
-import se.lexicon.model.Person;
-import se.lexicon.model.Role;
-import se.lexicon.model.TodoItem;
-
-import java.time.LocalDate;
-import java.util.Optional;
+import se.lexicon.controller.Controller;
 
 public class App
 {
     public static void main( String[] args )
     {
+       /*
         //AppUser
         //get AppUser data -> info from console
         AppUser appUserData1 = new AppUser("test", "password", Role.ROLE_USER);
@@ -74,7 +63,20 @@ public class App
         TodoItemDao todoItemDao = TodoItemDaoImpl.getInstance();
         TodoItem createdTask1= todoItemDao.create(task1);
 
-        System.out.println( todoItemDao.findAll());
+        System.out.println( todoItemDao.findAll()); */
+
+
+        //we want to use Controller in order to get data
+        Controller controller = new Controller();
+        controller.doMainMenu();
+
+
+        // Main purpose:  MVC -pattern (model-view-controller)
+        //Model     : we categorize all the data
+        //dao       : a pattern to make separate layers for data for manipulating data
+        //View      : take data from console and display data
+        //Controller: communicate with view and update model through dao
+
 
 
 
