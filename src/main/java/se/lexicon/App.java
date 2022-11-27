@@ -1,14 +1,24 @@
 package se.lexicon;
 
 import se.lexicon.dao.AppUserDao;
+import se.lexicon.dao.PersonDao;
+import se.lexicon.dao.TodoItemDao;
 import se.lexicon.dao.impl.AppUserDaoImpl;
+import se.lexicon.dao.impl.PersonDaoImpl;
+import se.lexicon.dao.impl.TodoItemDaoImpl;
 import se.lexicon.model.AppUser;
+import se.lexicon.model.Person;
 import se.lexicon.model.Role;
+import se.lexicon.model.TodoItem;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 public class App
 {
     public static void main( String[] args )
     {
+        //AppUser
         //get AppUser data -> info from console
         AppUser appUserData1 = new AppUser("test", "password", Role.ROLE_USER);
         AppUser appUserData2 = new AppUser("user2", "password", Role.ROLE_USER);
@@ -34,6 +44,39 @@ public class App
         AppUserDao appUserDao2 = AppUserDaoImpl.getInstance(); //Singleton pattern - try to instantiate again
         //if we instantiate again, it will begin with creating an empty storage -> the result is that we delete all data
         System.out.println(appUserDao2.findAll());
+
+
+        //Person data
+
+        Person personData1 = new Person("Test", "Test", appUserData1);
+        //personData1.setAppUser(createdAppUser1); // we force constructor in person to take appUser
+
+        PersonDao personDao =PersonDaoImpl.getInstance(); //PersonDao personDao =new PersonDaoImpl();
+        Person createdPerson1 = personDao.create(personData1);
+        System.out.println(createdPerson1.getAppUser());
+
+        System.out.println(personDao.findAll());
+        System.out.println( "---------------");
+        Optional<Person> optionalPerson = personDao.findByUsername("user");
+
+        //result of findByUsername is an Optional<Person> object
+        if (optionalPerson.isPresent()) System.out.println(optionalPerson.get());
+        else System.out.println("Person not found");
+        // .isPresent() is not null, if person exists
+
+
+        //TodoItem data
+        System.out.println( "---------------");
+
+        TodoItem task1 = new TodoItem("task1", "test description", LocalDate.parse("2022-12-10"));
+        task1.setAssignee(createdPerson1); //assign the task to the person
+
+        TodoItemDao todoItemDao = TodoItemDaoImpl.getInstance();
+        TodoItem createdTask1= todoItemDao.create(task1);
+
+        System.out.println( todoItemDao.findAll());
+
+
 
 
 

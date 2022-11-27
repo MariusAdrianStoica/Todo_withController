@@ -23,11 +23,16 @@ public class Person {
     }
 
     // 2nd constructor if you want to register a person without task
-    public Person(String firstName, String lastName) {
+
+    /**public Person(String firstName, String lastName) { */
+        // but we have to force constructor to create a person only with an appUser
+
+    public Person(String firstName, String lastName, AppUser appUser) {
         // id will be assigned only when we register person into storage
         setFirstName(firstName);
         setLastName(lastName);
         this.assignedTodos =new ArrayList<TodoItem>(); // empty list - no tasks
+        setAppUser(appUser);
     }
 
     // Setters & Getters

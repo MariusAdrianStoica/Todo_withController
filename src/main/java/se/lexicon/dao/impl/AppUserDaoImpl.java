@@ -1,7 +1,7 @@
 package se.lexicon.dao.impl;
 
 import se.lexicon.dao.AppUserDao;
-import se.lexicon.dao.impl.sequencer.PersonIdSequencer;
+import se.lexicon.dao.impl.sequencer.AppUserIdSequencer;
 import se.lexicon.model.AppUser;
 import se.lexicon.model.Role;
 
@@ -14,13 +14,13 @@ public class AppUserDaoImpl implements AppUserDao {
     //define storage
     private List<AppUser> storage;
 
-    private static AppUserDaoImpl instance; // ->step2
+    private static AppUserDaoImpl instance; /** ->step 2 */
 
     //constructor
-    private AppUserDaoImpl() { // public AppUserDaoImpl(){ ->step1
+    private AppUserDaoImpl() { /** ->step 1 */ // public AppUserDaoImpl(){ ->step1
         storage = new ArrayList<>(); // create empty list
     }
-    public static AppUserDaoImpl getInstance(){ // ->step 3
+    public static AppUserDaoImpl getInstance(){ /** ->step 3 */
         if (instance == null) instance= new AppUserDaoImpl(); //instantiate
         return instance;
         }
@@ -35,7 +35,7 @@ public class AppUserDaoImpl implements AppUserDao {
     public AppUser create(AppUser appUser) {
         if (appUser == null) throw new IllegalArgumentException("appUser was null");
         // check -> the username must not be duplicate
-        appUser.setId(PersonIdSequencer.nextId());//generate id only when register appUser to storage
+        appUser.setId(AppUserIdSequencer.nextId());//generate id only when register appUser to storage
         storage.add(appUser);
         return appUser;
     }
