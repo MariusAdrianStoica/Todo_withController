@@ -35,6 +35,10 @@ public class Person {
         setAppUser(appUser);
     }
 
+    public Person(){ //default constructor - in order to implement getTodoItemData()
+
+    }
+
     // Setters & Getters
     public Integer getId() {
         return id;

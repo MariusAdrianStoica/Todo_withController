@@ -5,6 +5,8 @@ import se.lexicon.model.Person;
 import se.lexicon.model.Role;
 import se.lexicon.model.TodoItem;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUi {
@@ -76,13 +78,41 @@ public class ConsoleUi {
 
     //get TodoItem data
     public TodoItem getTodoItemData(){
-        //todo: later
-        return null;
+        System.out.println("Task name/Title: ");
+        String title =getString();
+        System.out.println("Description: ");
+        String description = getString();
+        System.out.println("Deadline (YYYY-MM-DD): ");
+        String deadline= getString();
+
+        System.out.println("Person Id:"); // person for assign the task
+        Integer personId = getNumber();
+
+        TodoItem todoItemData =new TodoItem(title, description, LocalDate.parse(deadline));
+
+        Person personData=new Person();// in order to create an empty object person - we need a default constructor
+           personData.setId(personId);
+           // setting the id it means that we have the person(first, lastname, appUser) with that id
+
+        todoItemData.setAssignee(personData); // setting the person to the task (TodoItem)
+        return todoItemData;
     }
 
     //print TodoItem information
+    public void displayTodoItemInformation(TodoItem todoItem){
+        System.out.println(todoItem.toString());
+    }
 
     //display all tasks
+    public void displayAllTasks(List<TodoItem> todoItemList){
+        for (TodoItem todoItem: todoItemList) {
+
+            displayTodoItemInformation(todoItem); // same result as bellow
+            //System.out.println(todoItem.toString());
+        }
+    }
+
+
 
 
 
