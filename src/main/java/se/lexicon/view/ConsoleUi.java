@@ -51,21 +51,22 @@ public class ConsoleUi {
     // get person data (including AppUser)
 
     public Person getPersonData(){
-        System.out.println("Username:");
+        /*System.out.println("Username:");
         String username = getString();
 
         System.out.println("password:");
         String pwd = getString();
 
         AppUser appUserData = new AppUser(username, pwd, Role.ROLE_USER); //we create the appUser - role default
-
+*/
         System.out.println("firstName:");
         String firstName = getString();
 
         System.out.println("lastName:");
         String lastName = getString();
 
-        Person personData = new Person(firstName, lastName, appUserData); //we create the person
+        //Person personData = new Person(firstName, lastName, appUserData); //we create the person
+        Person personData = new Person(firstName, lastName); //we create the person
 
         return personData;
     }

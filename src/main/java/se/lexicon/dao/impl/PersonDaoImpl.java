@@ -32,6 +32,7 @@ public class PersonDaoImpl implements PersonDao {
     public Person create(Person model) {
         if (model == null) throw new IllegalArgumentException("person was null");
             // add a new id to Person
+
         model.setId(PersonIdSequencer.nextId()); //generate id only when register new Person to storage
         storage.add(model);
         return model;
@@ -62,11 +63,11 @@ public class PersonDaoImpl implements PersonDao {
         return  new ArrayList<>(storage);
     }
 
-    @Override
+    /*@Override
     public Optional<Person> findByUsername(String username) { //add Optional<Person>
         if (username== null) throw new IllegalArgumentException("username was null");
         for (Person person : storage)
             if(person.getAppUser().getUsername().equals(username)) return Optional.of(person);
         return Optional.empty();
-    }
+    }*/
 }

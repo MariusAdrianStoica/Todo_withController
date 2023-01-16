@@ -6,6 +6,12 @@ public class App
 {
     public static void main( String[] args )
     {
+
+        System.out.println("ToDoIt - JDBC ");
+        System.out.println("*******************************");
+
+
+
        /*
         //AppUser
         //get AppUser data -> info from console

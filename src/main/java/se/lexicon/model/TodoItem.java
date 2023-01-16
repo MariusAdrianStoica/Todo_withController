@@ -5,21 +5,21 @@ import java.util.Objects;
 
 public class TodoItem {
     //fields
-    private Integer id;
+    private Integer todo_id;
     private String title;
     private String description;
     private LocalDate deadline;
     private boolean done;
-    private Person assignee;
+    private Person assignee_id;
 
     //constructor to fetch data
-    public TodoItem(Integer id, String title, String description, LocalDate deadline, boolean done, Person assignee) {
-        setId(id);        //set instead of this.value : you already run validations from setter
+    public TodoItem(Integer todo_id, String title, String description, LocalDate deadline, boolean done, Person assignee_id) {
+        setId(todo_id);        //set instead of this.value : you already run validations from setter
         setTitle(title);
         setDescription(description);
         setDeadline(deadline);
         setDone(done);
-        setAssignee(assignee);
+        setAssignee(assignee_id);
     }
 
     //just to create a task
@@ -32,12 +32,12 @@ public class TodoItem {
 
 
     public Integer getId() {
-        return id;
+        return todo_id;
     }
 
     public void setId(Integer id) {
         if (id == null) throw new RuntimeException("id was null");
-        this.id = id;
+        this.todo_id = id;
     }
 
     public String getTitle() {
@@ -75,11 +75,11 @@ public class TodoItem {
     }
 
     public Person getAssignee() {
-        return assignee;
+        return assignee_id;
     }
 
-    public void setAssignee(Person assignee) { //if null, it means that the task is available - no need to validate
-        this.assignee = assignee;
+    public void setAssignee(Person assignee_id) { //if null, it means that the task is available - no need to validate
+        this.assignee_id = assignee_id;
     }
 
     //equals & hashcode
@@ -100,12 +100,12 @@ public class TodoItem {
     @Override
     public String toString() {
         return "TodoItem{" +
-                "id=" + id +
+                "id=" + todo_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +
                 ", done=" + done +
-                ", personName=" + assignee.getFirstName() + " " + assignee.getLastName() +
+                ", personName=" + assignee_id.getFirstName() + " " + assignee_id.getLastName() +
                 '}';
         // instead of assignee - a Person object, we can display firstname and lastname of the person
     }
